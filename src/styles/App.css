@@ -8,14 +8,15 @@
   display: flex;
   text-align: initial;
   width: 100%;
-  height: 500px;
+  padding-bottom: 200px;
 }
 
-.myHalf {
+.paulHalf {
   border: blue 1px solid;
-  min-height: 100px;
   width:50%;
-
+  text-align: center;
+  text-align: -webkit-center;
+  text-align: -moz-center;
 }
 
 

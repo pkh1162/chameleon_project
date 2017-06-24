@@ -4,7 +4,7 @@ import {giveArticlesSource, concatArticles, sortingFuncs, latest, filterFirstX} 
 
 const defaultState = {
     isLoading : false,
-    multiSources : ["the-next-web", "techcrunch", "hacker-news"],
+    multiSources : ["the-next-web", "techcrunch", "hacker-news", "ars-technica", "techradar", "the-verge"],
     multiSourceNews : [],
 }
 
