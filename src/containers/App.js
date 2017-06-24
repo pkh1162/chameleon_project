@@ -9,8 +9,17 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="App">
-            <h2>Aaayumi and Paul's Project!</h2>       
+          <div className="App">
+            <h2>Aaayumi and Paul's Project!</h2>
+            <div id="wrapper">
+              <div className="paulHalf">
+                 
+              </div>
+
+              <div className="aaayumiHalf">
+              
+              </div>
+            </div>       
         </div>
       </MuiThemeProvider>
     );
