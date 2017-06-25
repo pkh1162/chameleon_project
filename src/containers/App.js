@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import SearchBar from "./SearchBar.js";
-import GridIt from "../components/GridIt.js"
 import {connect} from "react-redux";
-import {fetchMultiNews} from "../actions/multiNewsAsync.js";
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import '../styles/App.css';
+
+
+/*///Paul's  imports/////*/ 
+import SearchBar from "./SearchBar.js";
+import GridIt from "../components/GridIt.js"
+import {fetchMultiNews} from "../actions/multiNewsAsync.js";
+/*///////////////////////*/
+
 
 class App extends Component {
 
   componentDidMount() {
-    console.log("in search bar componentDidMount");
-    this.props.fetchMultiSources(this.props.sources);
+    this.props.fetchMultiSources(this.props.sources);     //Fetches latest news items from NewsApi's
   }
 
   render() {
@@ -37,7 +42,6 @@ class App extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("state in multi news is : ", state)
   return {
     articles : state.multiNewsReducer.multiSourceNews,
     sources : state.multiNewsReducer.multiSources,

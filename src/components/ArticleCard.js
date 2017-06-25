@@ -1,11 +1,10 @@
 import React from "react";
+import "../styles/articleCard.css";
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import test from "../assets/images/test.jpg"
-import hn from "../assets/images/hackernews.png";
+
+
 import tc from "../assets/images/techcrunch.png";
 import tnw from "../assets/images/thenextweb.jpg";
-
 import tv from "../assets/images/theverge.png"
 import at from "../assets/images/arstechnica.png"
 import tr from "../assets/images/techradar.jpg"
@@ -13,7 +12,6 @@ import tr from "../assets/images/techradar.jpg"
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
 const sourcesInfo = {
-    "hacker-news" : [hn, "hacker news"],
     "the-next-web" : [tnw, "the next web"],
     "techcrunch" : [tc, "tech crunch"],
     "ars-technica" : [at, "ars technica"],
@@ -32,24 +30,24 @@ const ArticleCard = (props) => {
         imgSource =sourcesInfo[props.source][0];
     }
     return (
-        <Card zDepth={1} style={{width: props.cardWidth, textAlign:"left"}}>
+    
+        <Card id="article-card" zDepth={1} style={{width: props.cardWidth, textAlign:"left"}}>
+             <a href={props.url}>
             <CardHeader
                 titleColor={props.muiTheme.palette.darkColor}
                 titleStyle={{fontSize:"0.8rem"}}
                 style={{padding:"10px",  backgroundColor:props.muiTheme.palette.primary1Color}}
-                
                 title={(sourcesInfo[props.source][1]).toUpperCase()}
                 
             />
-            <CardMedia >
+            <CardMedia id="card-media" style={{overflow : "hidden"}} >
                 <img style={{height:props.imgHeight}} src={imgSource} alt="" />
             </CardMedia>
             <CardTitle titleStyle={{fontSize:"1rem", lineHeight:"1.55rem"}} title={props.title}>
             </CardTitle>
-         
-         
-            
+            </a>
         </Card>
+        
     )
 
     

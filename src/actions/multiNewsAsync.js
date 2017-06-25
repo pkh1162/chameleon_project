@@ -20,7 +20,7 @@ export const retreivedAllSources = (multiNewsData) => {
 
 
 const fetchSources = (source) => {
-    console.log("in search bars innner fetch");
+    //Fetch API which gets latest news stories from whatever source is passed in.
     return fetch("https://newsapi.org/v1/articles?source=" + source + "&sortBy=latest&apiKey=bb40bd039d1c4a1cad1325910d1674f3")
             .then(res => {
                 if(res.ok){
@@ -38,7 +38,8 @@ const fetchSources = (source) => {
 }
 
 export const fetchMultiNews = (newsSources) => {
-    console.log("in fetch multi news, action")
+    //Takes in array of sources and calls the fetch function on each one. Returns promises which when resolved, will update the store
+    //with an array of articles.
     return (dispatch) => {
 
         dispatch(requestMultiSources());
@@ -55,10 +56,6 @@ export const fetchMultiNews = (newsSources) => {
             })
             .catch((err) => {
                 console.log("Something went wrong with the retreival of sources: ", err.message);
-            })
-        
-        
-        
-       
+            })       
     }
 }

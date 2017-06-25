@@ -7,46 +7,34 @@ const RowType = (props) => {
     let cardStyle;
 
     console.log("the row type prop is: ", props.rowType);
-    if (props.rowType === 1){
-        console.log("row type one")
-        cardStyle = {
-            cardWidth: "97%",
-            imgHeight: ""
-        }
-
-        /*
-        return (    
-        <div style={{display:"flex", flexWrap:"wrap", justifyContent: "space-around", margin: "5px 0px"}}>
-            {props.articles.map((article, index) => {
-                    return (
-                        <SideArticle
-                            imgUrl={article.urlToImage}
-                        />
-                    )                   
-                })}
-        </div>
-        )
-        */
-
-
-    }
-
-    if (props.rowType === 2){
-        console.log("row type two")
-        cardStyle = {
+    
+    switch(props.rowType){
+        case 1 :
+            cardStyle = {
+                cardWidth: "97%",
+                imgHeight: ""
+            }
+            break;
+        case 2 :
+            cardStyle = {
                 cardWidth : "47%",
                 imgHeight : "200px"
             }
-    }
-
-    if (props.rowType === 3){
-        console.log("row type three")
-        cardStyle = {
+            break;
+        case 3 :
+            cardStyle = {
                 cardWidth : "30%",
                 imgHeight : "130px"
             }
-        
+            break;
+        default : 
+            cardStyle = {
+                cardWidth : "30%",
+                imgHeight : "130px"
+            }
     }
+        
+
 
     return (
         <div style={{display:"flex", flexWrap:"wrap", justifyContent: "space-around", margin: "9px 0px"}}>
@@ -58,6 +46,7 @@ const RowType = (props) => {
                             cardWidth={cardStyle.cardWidth}
                             imgHeight={cardStyle.imgHeight}
                             imgUrl = {article.urlToImage} 
+                            url = {article.url}
                             title={article.title}
                             description={article.description}
                         />
