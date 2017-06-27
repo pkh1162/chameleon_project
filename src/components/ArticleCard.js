@@ -31,7 +31,7 @@ const ArticleCard = (props) => {
     }
     return (
     
-        <Card id="article-card" zDepth={1} style={{width: props.cardWidth, textAlign:"left"}}>
+        <Card id="article-card" zDepth={1} style={{flexBasis: props.cardWidth, textAlign:"left"}}>
              <a href={props.url}>
             <CardHeader
                 titleColor={props.muiTheme.palette.darkColor}

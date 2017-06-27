@@ -19,7 +19,7 @@ const searchBarReducer = (state=defaultState, action) => {
             return {...state, searchResults : action.searchResults, isLoading : false};
         case CLEAR_SEARCH_RESULTS : 
         console.log("in clear search results, reducer")
-            return {...state, searchResults : []}
+            return {...state, searchResults : [], isLoading: false}
         case UPDATE_SEARCH_TERM : 
             return {...state, searchTerm : action.searchTerm}
         default : 

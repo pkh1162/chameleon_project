@@ -2,6 +2,8 @@ export const REQUEST_MULTI_SOURCES = "REQUEST_MULTI_SOURCES";
 export const RETREIVED_SOURCE = "RETREIVED_SOURCE";
 export const RETREIVED_ALL_SOURCES = "RETREIVED_ALL_SOURCES";
 export const ERROR_RETREIVING_SOURCES = "ERROR_RETREIVING_SOURCES";
+export const CHANGE_NO_ARTICLES_SHOWN = "CHANGE_NO_ARTICLES_SHOWN";
+
 
 
 export const requestMultiSources = () => {
@@ -17,6 +19,14 @@ export const retreivedAllSources = (multiNewsData) => {
     }
 }
 
+export const changeAmountOfArticlesShown = (amount) => {
+    console.log("in change articles, in action: ", amount)
+    return {
+        type: CHANGE_NO_ARTICLES_SHOWN,
+        amount
+    }
+}
+
 
 
 const fetchSources = (source) => {
@@ -24,6 +34,7 @@ const fetchSources = (source) => {
     return fetch("https://newsapi.org/v1/articles?source=" + source + "&sortBy=latest&apiKey=bb40bd039d1c4a1cad1325910d1674f3")
             .then(res => {
                 if(res.ok){
+                    
                 return res.json()
                 }
             

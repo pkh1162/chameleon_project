@@ -27,3 +27,27 @@ export const filterFirstX = (x=10, array) => {
         return index < x;
     })
 }
+
+
+
+
+
+export const chunkIt = (chunkThis) => {
+    let randoms = chunkThis.map(x => {
+        return Math.floor((Math.random()*3) + 1);
+    })
+
+    let chunkedArray = randoms.map(x => {
+        if (chunkThis.length !== 0){
+            return chunkThis.splice(0, x);  
+        }  
+    })
+
+    return chunkedArray.filter(x => {
+        if(x)
+            return x;
+    }) 
+    
+}
+  
+

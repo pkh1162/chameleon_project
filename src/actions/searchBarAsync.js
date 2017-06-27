@@ -36,8 +36,7 @@ export const updateSearchWord = (searchTerm) => {
 }
 
 const options = {
-    method : "GET",
-    mode : "no-cors"
+    method : "GET"
 }
 
 export const getSearchResults = (searchTerm, loading) => {
@@ -70,6 +69,7 @@ export const getSearchResults = (searchTerm, loading) => {
             })
             .catch(e => {
                 console.log("request fail", e.message)
+                dispatch(clearSearchResults());
             })
           
 

@@ -64,7 +64,6 @@ class SearchBar extends Component {
                 <List style={{margin:"10px", textAlign:"left"}}>
                 {
                     this.props.searchResults.map((article, index) => {   
-                        console.log("arrrr: ", article)                
                         return (
                             <a key={index} href={article["web_url"]}>
                             <Paper style={{margin:"7px", borderTop:"1px solid #FF4081"}} zDepth={1}>
