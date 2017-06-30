@@ -3,6 +3,7 @@
 }
 
 
+<<<<<<< HEAD
 
 #wrapper {
   display: flex;
@@ -25,3 +26,28 @@
 }
 
 
+=======
+
+#wrapper {
+  display: flex;
+  text-align: initial;
+  width: 100%;
+  padding-bottom: 200px;
+}
+
+.paulHalf {
+  border: blue 1px solid;
+  width:50%;
+  text-align: center;
+  text-align: -webkit-center;
+  text-align: -moz-center;
+}
+
+
+.aaayumiHalf {
+  min-height: 100px;
+  width: 50%;
+  background: red;
+
+}
+>>>>>>> addRouter
