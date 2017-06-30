@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 
 class NewsList extends Component {
-    constructor(){
-        super();
-        this.state = {
-            items: [],
-            hasErrored: false
-        };
-    }
-
+   componentDidMount() {
+       this.props.fetchData('https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey={API_KEY}');
+   }
 render() {
     if(this.state.hasErrored) {
         return <p> Error occured. Please come back later </p>;
