@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import RaisedButton from 'material-ui/RaisedButton';
+import NewsList from 'List';
 
 import '../styles/App.css';
 
@@ -9,7 +10,10 @@ class App extends Component {
     return (
       <MuiThemeProvider>
       <div className="App">
-          <h2>Aaayumi and Paul's Project!</h2>       
+          <h2>Ayumi and Paul's Project!</h2> 
+        <div className="Ayumi">
+        <NewsList />
+        </div>
       </div>
       </MuiThemeProvider>
     );
