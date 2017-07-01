@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import  { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import {connect} from "react-redux";
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
-
 
 
 
@@ -22,6 +20,9 @@ import NewsItems from "../containers/NewsItems.js"
 import {fetchMultiNews} from "../actions/multiNewsAsync.js";
 /*///////////////////////*/
 
+/*///Ayumi's  imports/////*/ 
+import NewsList from "./List.js";
+/*///////////////////////*/
 
 class App extends Component {
 
@@ -30,16 +31,6 @@ class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <MuiThemeProvider>
-      <div className="App">
-          <h2>Ayumi and Paul's Project!</h2> 
-        <div className="Ayumi">
-        
-        </div>
-      </div>
-      </MuiThemeProvider>
-=======
       <BrowserRouter>
         <MuiThemeProvider>
           <div className="App">
@@ -63,7 +54,8 @@ class App extends Component {
                         
                       </div>
 
-                      <div className="aaayumiHalf"></div>
+                      <div className="aaayumiHalf"><NewsList />
+                      </div>
 
                     </div> 
                   )
@@ -77,7 +69,6 @@ class App extends Component {
           </div>
         </MuiThemeProvider>
       </BrowserRouter>
->>>>>>> 4f1743cccd2857e95290553863065d26e536f288
     );
   }
 }
@@ -95,4 +86,3 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 export default connect(null, null)(App);
-
