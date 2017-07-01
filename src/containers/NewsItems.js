@@ -21,8 +21,10 @@ class NewsItems extends React.Component {
 
     componentDidMount() {
         this.props.fetchMultiSources(this.props.sources);     //Fetches latest news items from NewsApi's
-    }
 
+    }
+    
+  
     toggleDrawer = () => {
         console.log("blah")
         this.setState({

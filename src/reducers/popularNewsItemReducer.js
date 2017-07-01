@@ -10,7 +10,8 @@ export function itemHasErrored(state=false, action) {
     }
 }
 
-export function items(state=[], action) {
+export function items(state={articles:[], itemsHasErrored: false}, action) {
+    debugger;
     switch (action.type) {
         case 'ITEMS_FETCH_DATA_SUCCESS':
             return action.items;
@@ -19,3 +20,4 @@ export function items(state=[], action) {
             return state;
     }
 }
+
