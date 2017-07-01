@@ -1,0 +1,17 @@
+#searchBar {
+    text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
+#searchBar form {
+    text-align: left;
+    text-align: -webkit-left;
+    text-align: -moz-left;
+    
+}
+
+#searchBar a {
+    text-decoration: none;
+}
+

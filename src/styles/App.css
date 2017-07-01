@@ -2,23 +2,24 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+#wrapper {
+  display: flex;
+  text-align: initial;
+  width: 100%;
+  min-height: 500px;
+  padding-bottom: 200px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.paulHalf {
+  border: blue 1px solid;
+  width:50%;
 }
 
-.App-intro {
-  font-size: large;
+
+.aaayumiHalf {
+  width: 50%;
+  border: red 1px solid;
+
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
