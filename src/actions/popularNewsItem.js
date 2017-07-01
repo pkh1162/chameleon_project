@@ -1,11 +1,11 @@
 export const itemHasErrored = (bool) => {
     return {
-        type : 'ITEMS_HAS_ERRORED',
+        type : 'ITEM_HAS_ERRORED',
         hadErrored: bool
     };
 }
 
-export const itemFetchDataSuccess = (items) => {
+export const itemsFetchDataSuccess = (items) => {
     return {
         type: 'ITEMS_FETCH_DATA_SUCCESS',
         items
