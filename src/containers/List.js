@@ -24,7 +24,12 @@ render() {
         {
             articles.map((item) => (
                 <li key={item.title}>
-                    {item.title}
+                    <a href={item.url}>
+                    <h2>{item.title}</h2>
+                    <img src={item.urlToImage} alt="Smiley face" />
+                    <h3>{item.author}</h3>
+                    <p>{item.description}</p>
+                    </a>
                 </li> 
             ))
         }
