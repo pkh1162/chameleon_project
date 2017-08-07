@@ -1,0 +1,139 @@
+import {MEETUPS_API_KEY} from "../apiKeys.js";
+
+const fetchJsonp = require("fetch-jsonp");
+export const REQUEST_POSTCODE = "REQUEST_POSTCODE";
+export const RETRIEVED_MEETUPS = "RETRIEVED_MEETUPS";
+export const CLEAR_MEETUPS_RESULTS = "CLEAR_MEETUPS_RESULTS";
+export const UPDATE_SEARCH_POSTCODE = "UPDATE_SEARCH_POSTCODE";
+export const CHANGE_MAP_COORDINATES = "CHANGE_MAP_COORDINATES";
+export const UPDATE_MARKERS = "UPDATE_MARKERS";
+
+
+
+export const clearMeetupsResults = () => {
+    return {
+        type : CLEAR_MEETUPS_RESULTS
+    }
+}
+
+
+export const requestPostcode = (postcode) => {
+    return {
+        type : REQUEST_POSTCODE,
+        postcode 
+    }
+}
+
+export const retrievedMeetups = (meetupsResults, markers) => {
+    return {
+        type : RETRIEVED_MEETUPS,
+        meetupsResults,
+        markers
+    }
+}
+
+export const changeMapCoordinates = (location) => {
+    return {
+        type: CHANGE_MAP_COORDINATES,  
+        location
+    }
+}
+
+export const updateSearchPostcode = (searchPostcode) => {
+    //console.log("the search postcode is: ", searchPostcode)
+    return {
+        type : UPDATE_SEARCH_POSTCODE,
+        searchPostcode
+    }
+}
+
+export const updateMarkers = (markerId) => {
+    return {
+        type: UPDATE_MARKERS,
+        markerId
+    }
+}
+
+const removeHTML = (summary) => {
+    let div = document.createElement("div");
+    div.innerHTML = summary;
+    let text = div.textContent || div.innerText || "";
+    //console.log("in removeHTML: ", text);
+    
+    return text;
+}
+
+
+const options = {
+    method : "GET"
+}
+
+
+
+const extractMarker = (location) => {
+    let {lon, lat, name} = location.venue;
+    ////console.log("location is : ", location.venue.lat)
+
+    return {
+        position: {
+            lng: lon,
+            lat: lat,
+            name
+        }, 
+        key: location.id, 
+        name: location.name,
+        infoboxOpen: false
+    }
+}
+
+
+
+
+export const getMeetupsResults = (postcode) => {
+    return (dispatch) => {
+        dispatch(requestPostcode(postcode));
+        
+            //console.log("post code is: ", postcode);
+
+            let str1 = postcode.replace(/\s\s+/g, ' ');     //Replace multiple spaces with one space.      
+            let str = str1.replace(/ /g, '+').toUpperCase();              //The concierge api only seems to working when spaces are encoded as +, and not through normal encoding.
+            //console.log("post code is: ", str);
+
+      
+            fetchJsonp("https://api.meetup.com/2/concierge?zip=" + str + "&offset=0&radius=50&format=json&photo-host=public&page=500&key=" + MEETUPS_API_KEY)
+            .then(res => {
+                //console.log("the res stuff is: ", res.json())
+                return res.json()
+            
+                //throw new Error("Api request failed")
+                
+            })
+            .then(data => {
+                ////console.log("in fetch results: ", data.response.docs)
+                let markerArray = [];
+
+                let modifiedData = 
+                data.results
+                .filter(y => y.venue)
+                .map(x => {
+                    x.description = removeHTML(x.description);
+                    markerArray.push(extractMarker(x));
+
+                    return x
+                })
+                 //console.log("in meetups async then, and the data is: ", modifiedData);
+                 //console.log("in meetups async then, and the marker data is: ", markerArray);
+                
+                dispatch(retrievedMeetups(modifiedData, markerArray))
+            })
+            .catch(e => {
+               dispatch(clearMeetupsResults());
+                console.log("request fail", e.message)              
+            })
+          
+
+        }
+        
+}
+
+

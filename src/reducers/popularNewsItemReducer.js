@@ -11,7 +11,7 @@ export function itemHasErrored(state=false, action) {
 }
 
 export function items(state={articles:[], itemsHasErrored: false}, action) {
-    debugger;
+   // debugger;
     switch (action.type) {
         case 'ITEMS_FETCH_DATA_SUCCESS':
             return action.items;

@@ -1,11 +1,10 @@
+import {NYT_API_KEY} from "../apiKeys.js";
 
 export const REQUEST_SEARCH = "REQUEST_SEARCH";
 export const RETREIVED_SEARCH = "RETREIVED_SEARCH";
 export const CLEAR_SEARCH_RESULTS = "CLEAR_SEARCH_RESULTS";
 export const UPDATE_SEARCH_TERM = "UPDATE_SEARCH_TERM";
 
-
-const NYT_API_KEY = "3344a22b2028445b847c194852ebc5ae";
 
 export const clearSearchResults = () => {
     return {
@@ -55,7 +54,7 @@ export const getSearchResults = (searchTerm, loading) => {
 
             fetch("http://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=" + NYT_API_KEY + "&q=" + searchTerm, options)
             .then(res => {
-                console.log("the res stuff is: ", res)
+                //console.log("the res stuff is: ", res)
                 if (res.ok && res.status === 200){
 
                     return res.json()
@@ -64,11 +63,11 @@ export const getSearchResults = (searchTerm, loading) => {
                 
             })
             .then(data => {
-                console.log("in fetch results: ", data.response.docs)
+                //console.log("in fetch results: ", data.response.docs)
                 dispatch(retreivedSearch(data.response.docs))
             })
             .catch(e => {
-                console.log("request fail", e.message)
+                //console.log("request fail", e.message)
                 dispatch(clearSearchResults());
             })
           

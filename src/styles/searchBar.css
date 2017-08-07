@@ -2,6 +2,7 @@
     text-align: center;
     text-align: -webkit-center;
     text-align: -moz-center;
+    
 }
 
 #searchBar form {
@@ -14,4 +15,36 @@
 #searchBar a {
     text-decoration: none;
 }
+
+#searchBar input {
+    text-transform: uppercase;
+}
+
+#searchBar .pagination {
+    
+    position: relative;
+    height: 60px;
+    padding-bottom: 100px;
+}
+
+#searchBar .next {
+    position: absolute;
+    right: 35px;
+}
+
+#searchBar .prev {
+    position: absolute;
+    left: 35px;
+}
+
+#searchBar .pagination i {
+    font-size: 22px;   
+    color: rgb(255, 64, 129);
+}
+
+
+
+
+
+
 

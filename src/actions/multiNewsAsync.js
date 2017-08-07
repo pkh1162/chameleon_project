@@ -1,3 +1,4 @@
+import {NEWS_API_KEY} from "../apiKeys.js";
 export const REQUEST_MULTI_SOURCES = "REQUEST_MULTI_SOURCES";
 export const RETREIVED_SOURCE = "RETREIVED_SOURCE";
 export const RETREIVED_ALL_SOURCES = "RETREIVED_ALL_SOURCES";
@@ -20,7 +21,7 @@ export const retreivedAllSources = (multiNewsData) => {
 }
 
 export const changeAmountOfArticlesShown = (amount) => {
-    console.log("in change articles, in action: ", amount)
+    //console.log("in change articles, in action: ", amount)
     return {
         type: CHANGE_NO_ARTICLES_SHOWN,
         amount
@@ -31,7 +32,7 @@ export const changeAmountOfArticlesShown = (amount) => {
 
 const fetchSources = (source) => {
     //Fetch API which gets latest news stories from whatever source is passed in.
-    return fetch("https://newsapi.org/v1/articles?source=" + source + "&sortBy=latest&apiKey=bb40bd039d1c4a1cad1325910d1674f3")
+    return fetch("https://newsapi.org/v1/articles?source=" + source + "&sortBy=latest&apiKey=" + NEWS_API_KEY)
             .then(res => {
                 if(res.ok){
                     
@@ -42,7 +43,7 @@ const fetchSources = (source) => {
             
             })
             .then(data => {
-                console.log("in fetch sources, return data is: ", data)
+                //console.log("in fetch sources, return data is: ", data)
                 return data
             })
     
@@ -62,7 +63,7 @@ export const fetchMultiNews = (newsSources) => {
 
         Promise.all(promises)
             .then((newsData) => {
-                console.log("promises all resolved: ", newsData)
+               // console.log("promises all resolved: ", newsData)
                 dispatch(retreivedAllSources(newsData));
             })
             .catch((err) => {
