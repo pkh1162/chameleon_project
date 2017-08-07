@@ -92,6 +92,26 @@ class SearchBar extends Component {
 
         return (
             <div id="searchBar">
+                {this.props.searchType === "meetups" &&
+                <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
+                    <ListItem 
+                        style={{textAlign:"left"}}
+                        secondaryTextLines={2} 
+                        primaryText="Enter your postcode/zip code to find coding meetups in your area."
+                        secondaryText={    
+                            <p style={{width: "100%"}}>
+                                If your postcode is not recognised, meetups in the default location of Glasgow will be shown.
+                            </p>      
+                        }
+                    >
+                    </ListItem>
+                    
+                    <Divider />
+                </Paper>
+                
+                
+                }
+                
                 <form onSubmit={this.formSubmitted}>
                     <TextField
                         autoComplete="off" 
@@ -183,6 +203,7 @@ class SearchBar extends Component {
                         {this.state.chunkIndex !== 0 &&
                             <p className="prev" onClick={this.handlePrev}><i className="fa fa-arrow-left"></i></p>
                         }
+                        {this.props.chunks.length > 0 && <p className="pageNumber">page <span>{this.state.chunkIndex + 1}</span></p> } 
                         {this.state.chunkIndex < this.props.chunks.length-1 &&
                             <p className="next" onClick={this.handleNext}><i className="fa fa-arrow-right"></i></p>
                         }
