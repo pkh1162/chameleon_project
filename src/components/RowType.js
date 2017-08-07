@@ -6,7 +6,7 @@ import SideArticle from "./SideArticle.js";
 const RowType = (props) => {
     let cardStyle;
 
-    console.log("the row type prop is: ", props.rowType);
+    //console.log("the row type prop is: ", props.rowType);
     
     switch(props.rowType){
         case 1 :

@@ -14,6 +14,7 @@ import '../styles/App.css';
 
 
 /*///Paul's  imports/////*/ 
+import Meetups from "./Meetups.js";
 import SearchBar from "./SearchBar.js";
 import GridIt from "../components/GridIt.js"
 import NewsItems from "../containers/NewsItems.js"
@@ -44,12 +45,21 @@ class App extends Component {
 
               
               <Switch>
-                <Route path="/meetups" component={SearchBar}/>
+                <Route path="/meetups" 
+                  render={() => {
+                    return (
+                      <Meetups/>
+                    
+                    )
+                  }}
+                
+                
+                />
                 <Route path="/" render={() => {
                   return (
                     <div id="wrapper">
                       <div className="paulHalf">
-                        <SearchBar/>
+                        <SearchBar searchType="newsSearch"/>
                         <NewsItems/>
                         
                       </div>
@@ -86,3 +96,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 export default connect(null, null)(App);
+
+
+
+/*
+<Map 
+                        containerElement={<div style={{width:"400px", height: "400px"}}/>}
+                        mapElement={<div style={{width:"400px", height: "400px"}}/>}
+                        zoom={15}
+                      />*/

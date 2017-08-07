@@ -7,6 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
+import {GOOGLE_MAP_API_KEY as googleKey} from "../apiKeys.js";
 
 import { fetchMultiNews, changeAmountOfArticlesShown } from "../actions/multiNewsAsync.js";
 
@@ -21,12 +22,11 @@ class NewsItems extends React.Component {
 
     componentDidMount() {
         this.props.fetchMultiSources(this.props.sources);     //Fetches latest news items from NewsApi's
-
     }
     
   
     toggleDrawer = () => {
-        console.log("blah")
+        //console.log("blah")
         this.setState({
             isDrawerOpen : this.state.isDrawerOpen ? false : true
         })
@@ -34,7 +34,7 @@ class NewsItems extends React.Component {
 
     changeArticleNumber = (e) => {
 
-        console.log("in change artile number, in function: ", e.target.value)
+        //console.log("in change artile number, in function: ", e.target.value)
         let amount = e.target.value > 9 ? e.target.value : 10;        
         this.props.changeNumberOfArticlesShown(amount);
           this.props.fetchMultiSources(this.props.sources);
@@ -50,11 +50,11 @@ class NewsItems extends React.Component {
         return (
             <div id="news-items">
                 <AppBar 
-                    style={{textAlign:"left", backgroundColor:"#FF4081"}} 
+                    style={{textAlign:"left", backgroundColor:"#FF4081", width: "97%", margin:"0 auto"}} 
                     title="News"
-                    
+                    iconElementLeft={<div></div>}
                     iconElementRight={
-                        <FlatButton onTouchTap={this.toggleDrawer} label="down" />
+                        <FlatButton onTouchTap={this.toggleDrawer}><i className="fa fa-ellipsis-h"></i></FlatButton>
                     }  
                 />
                 <GridIt articles={this.props.articles} loading={this.props.multiNewsLoading}/>
