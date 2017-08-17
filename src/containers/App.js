@@ -54,7 +54,8 @@ class App extends Component {
                         
                       </div>
 
-                      <div className="aaayumiHalf"><NewsList />
+                      <div className="aaayumiHalf">
+                      <NewsList />
                       </div>
 
                     </div> 
