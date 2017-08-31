@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { itemsFetchData, itemHasErrored } from '../actions/popularNewsItem.js';
+<<<<<<< HEAD
 
 
+=======
+import {Tabs, Tab} from 'material-ui/Tabs';
+>>>>>>> aaayumi
 export const NEWS_API_KEY = "bb40bd039d1c4a1cad1325910d1674f3";
 
 
 class NewsList extends Component {
-   componentDidMount() {
-       this.props.fetchData("https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=bb40bd039d1c4a1cad1325910d1674f3");
-       
-       
-   }
+ 
+  // add api keys reusable links 
+  componentDidMount() {
+    this.props.fetchData("https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=bb40bd039d1c4a1cad1325910d1674f3");  
+    }
+
+   handleChange(){
+    this.props.fetchData("https://newsapi.org/v1/articles?source=techcrunch&sortBy=latest&apiKey=bb40bd039d1c4a1cad1325910d1674f3");
+    }
+
+   handleBack(){
+    this.props.fetchData("https://newsapi.org/v1/articles?source=techcrunch&sortBy=top&apiKey=bb40bd039d1c4a1cad1325910d1674f3");
+    }
+
+   
 render() {
     if(this.props.hasErrored) {
         return <p> Error occured. Please come back later </p>;
@@ -23,6 +37,10 @@ render() {
 
     return (
     <div>
+    <Tabs style={{marginBottom:"20px"}}>
+                <Tab id="trend" label="trend" onClick={this.handleBack.bind(this)} />
+                <Tab id="latest" label="latest" onClick={this.handleChange.bind(this)}/>
+              </Tabs>
      <ul>
         {
             articles.map((item) => (
