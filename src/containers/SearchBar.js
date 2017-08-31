@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import {getSearchResults, clearSearchResults, updateSearchWord} from "../actions/searchBarAsync.js";
-import {getMeetupsResults, clearMeetupsResults, updateSearchPostcode, changeMapCoordinates} from "../actions/meetupsSearchAsync.js";
+import {getMeetupsResults, clearMeetupsResults, updateSearchPostcode, changeMapCoordinates, updateSearchWords} from "../actions/meetupsSearchAsync.js";
 
 import {connect} from "react-redux";
 import "../styles/searchBar.css"
+import  { Route, Link, Switch } from "react-router-dom";
+
 
 
 import TextField from 'material-ui/TextField';
@@ -12,23 +14,39 @@ import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
+import {Tabs, Tab} from 'material-ui/Tabs';
 
 class SearchBar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            chunkIndex : 0
+            chunkIndex : 0,
+            errorText: "",
+            
+            
         }
     }
 
-    handleSearch = (e) => {
+
+    handleCountrySearch = (e) => {
+        console.log("the searches are: ", e.currentTarget)
         let input = e.target.value.trim();
         if (!input){
             this.props.clearSearchResults();
         }
-        this.props.updateSearchTerm(e.target.value.trim())
 
+        this.props.updateSearchWords(this.props.city, input)
+    }
+
+    handleSearch = (e) => {
+        //console.log("the searches are: ", e.target.value)
+        let input = e.target.value.trim();
+        if (!input){
+            this.props.clearSearchResults();
+        }
+
+        this.props.updateSearchTerm(input)
     }
 
     clearResults = (e) => {
@@ -57,6 +75,24 @@ class SearchBar extends Component {
         }
     }
 
+    formSubmitted2 = (e) => {
+        e.preventDefault();
+        let city = e.target.city.value.trim();
+        let country = e.target.country.value.trim();
+
+        
+
+        if (city && country){
+            this.setState({errorText: ""})
+            console.log("form submit2, city: " + city + " : country: " + country);
+            this.props.fetchSearchResults(null, this.props.loading, city, country);
+        }
+        else {
+            this.setState({errorText: "both fields required"})
+            this.props.clearSearchResults();
+        }
+    }
+
     handlePrev = () => {
         if(this.state.chunkIndex > 0){
             this.setState({
@@ -77,11 +113,15 @@ class SearchBar extends Component {
     render() {
        // console.log("in searchbar render: props: ", this.props)
         let searchPlaceholder = "Search"; 
+        let countryPlaceholder = "Country Code";
+        let cityPlaceholder = "City";
         let chunks = this.props.searchResults;
         
 
         if(this.props.searchType === "meetups"){
-            searchPlaceholder = "Enter Postcode";
+            searchPlaceholder = "Enter Zip Code";
+            countryPlaceholder = "Enter Country Code";
+            cityPlaceholder = "Enter City";
             chunks = this.props.chunks;
             if(this.props.chunks.length>0){
                 chunks = this.props.chunks[this.state.chunkIndex];
@@ -92,27 +132,98 @@ class SearchBar extends Component {
 
         return (
             <div id="searchBar">
+                               
                 {this.props.searchType === "meetups" &&
-                <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
-                    <ListItem 
-                        style={{textAlign:"left"}}
-                        secondaryTextLines={2} 
-                        primaryText="Enter your postcode/zip code to find coding meetups in your area."
-                        secondaryText={    
-                            <p style={{width: "100%"}}>
-                                If your postcode is not recognised, meetups in the default location of Glasgow will be shown.
-                            </p>      
-                        }
-                    >
-                    </ListItem>
+                <div>
+                
+                <Tabs style={{marginBottom:"20px"}}>
+                    <Tab value="a" label="Rest of World">
+                        <div>
+                        <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
+                            <ListItem 
+                                style={{textAlign:"left"}}
+                                secondaryTextLines={2} 
+                                primaryText="Enter a two letter country code and city name to find coding meetups in your area."
+                                secondaryText={    
+                                    <p style={{width: "100%"}}>
+                                        If the details you provide are not recognised, meetups in the default location of Glasgow will be shown.
+                                    </p>      
+                                }
+                            >
+                            </ListItem>
+                            
+                            <Divider />
+                        </Paper>
+
+                        <form onSubmit={this.formSubmitted2} style={{display: "inline-flex", alignItems: "baseline"}}>
+                            <div>
+                            <TextField
+                                autoComplete="off" 
+                                style={{margin: "5px", position: "relative"}} 
+                                name="country" 
+                                floatingLabelText={countryPlaceholder}
+                                errorText={this.state.errorText}
+                                errorStyle={{position: 'absolute', top: '70px'}} 
+                            />
+                            <TextField
+                                autoComplete="off" 
+                                style={{margin: "5px", position: "relative"}} 
+                                name="city"                
+                                floatingLabelText={cityPlaceholder}
+                                errorText={this.state.errorText}
+                                errorStyle={{position: 'absolute', top: '70px'}} 
+                            />
+                            </div>
+                            <div>
+                            <FlatButton label="Search" type="submit" primary={true}/>
+                            <FlatButton onTouchTap={this.clearResults} label="Clear"/>
+                            </div>
+                        </form>
+                        </div>        
+                    </Tab>
                     
-                    <Divider />
-                </Paper>
-                
-                
+                    <Tab label="USA">
+                    <div>
+                    <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
+                            <ListItem 
+                                style={{textAlign:"left"}}
+                                secondaryTextLines={2} 
+                                primaryText="Enter your zip code code to find coding meetups in your area."
+                                secondaryText={    
+                                    <p style={{width: "100%"}}>
+                                        If your zip code is not recognised, meetups in the default location of Glasgow will be shown.
+                                    </p>      
+                                }
+                            >
+                            </ListItem>
+                            
+                            <Divider />
+                        </Paper>
+
+                        <form onSubmit={this.formSubmitted}>
+                            <TextField
+                                autoComplete="off" 
+                                style={{margin: "20px"}} 
+                                name="searchTerm" 
+                                value={this.props.searchTerm} 
+                                onChange={this.handleSearch} 
+                                floatingLabelText={searchPlaceholder}
+                            />
+                            <FlatButton label="Search" type="submit" primary={true}/>
+                            <FlatButton onTouchTap={this.clearResults} label="Clear"/>
+                        </form>
+
+                        </div>
+
+                    
+                    </Tab>
+                </Tabs>
+
+                </div>
                 }
-                
-                <form onSubmit={this.formSubmitted}>
+
+                {this.props.searchType === "newsSearch" &&
+                    <form onSubmit={this.formSubmitted}>
                     <TextField
                         autoComplete="off" 
                         style={{margin: "20px"}} 
@@ -124,7 +235,9 @@ class SearchBar extends Component {
                     <FlatButton label="Search" type="submit" primary={true}/>
                     <FlatButton onTouchTap={this.clearResults} label="Clear"/>
                 </form>
-                
+                }
+
+
 
                 {this.props.loading && <CircularProgress  style={{verticalAlign:"middle", margin:"40px 0px"}} size={120}/>}
                 
@@ -149,10 +262,12 @@ class SearchBar extends Component {
                                         secondaryTextLines={2} 
                                         primaryText={article.name} 
                                         secondaryText={
-                                            
+                                                <div>
+                                                <p className="time">{article.time}</p>    
                                                 <p style={{width: "80%"}}>
                                                     {article.description}
                                                 </p>
+                                                </div>
                                             
                                         
                                         }
@@ -221,7 +336,7 @@ class SearchBar extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    //console.log("in searchbar map state to props: ", state);
+    console.log("in searchbar map state to props: ", state);
     if (ownProps.searchType === "newsSearch"){
         return {
             loading : state.searchBarReducer.isLoading,
@@ -235,7 +350,9 @@ const mapStateToProps = (state, ownProps) => {
             loading : state.meetupsReducer.isLoading,
             searchTerm : state.meetupsReducer.postcode,
             searchResults : state.meetupsReducer.meetupsResults,
-            chunks : state.meetupsReducer.chunkedResults
+            chunks : state.meetupsReducer.chunkedResults,
+            country: state.meetupsReducer.country,
+            city: state.meetupsReducer.city
         }
     }
     
@@ -249,8 +366,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             updateSearchTerm : (postcode) => {
                 dispatch(updateSearchPostcode(postcode))
             },
-            fetchSearchResults : (postcode) => {
-                dispatch(getMeetupsResults(postcode))
+            updateSearchWords : (city, country) => {
+                dispatch(updateSearchWords(city, country))
+            },
+            fetchSearchResults : (postcode, loading, city, country) => {
+                dispatch(getMeetupsResults(postcode, loading, city, country))
             },
             clearSearchResults : () => {
                 dispatch(clearMeetupsResults())
@@ -281,3 +401,22 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+
+
+
+/*
+
+<form onSubmit={this.formSubmitted}>
+                    <TextField
+                        autoComplete="off" 
+                        style={{margin: "20px"}} 
+                        name="searchTerm" 
+                        value={this.props.searchTerm} 
+                        onChange={this.handleSearch} 
+                        floatingLabelText={searchPlaceholder}
+                    />
+                    <FlatButton label="Search" type="submit" primary={true}/>
+                    <FlatButton onTouchTap={this.clearResults} label="Clear"/>
+                </form>
+
+*/

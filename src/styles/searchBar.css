@@ -9,7 +9,6 @@
     text-align: left;
     text-align: -webkit-left;
     text-align: -moz-left;
-    
 }
 
 #searchBar a {
@@ -18,6 +17,14 @@
 
 #searchBar input {
     text-transform: uppercase;
+}
+
+.time {
+    font-size: 12px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: lightblue;
 }
 
 #searchBar .pagination {

@@ -6,6 +6,7 @@ export const CLEAR_SEARCH_RESULTS = "CLEAR_SEARCH_RESULTS";
 export const UPDATE_SEARCH_TERM = "UPDATE_SEARCH_TERM";
 
 
+
 export const clearSearchResults = () => {
     return {
         type : CLEAR_SEARCH_RESULTS
@@ -26,6 +27,8 @@ export const retreivedSearch = (searchResults) => {
         searchResults
     }
 }
+
+
 
 export const updateSearchWord = (searchTerm) => {
     return {

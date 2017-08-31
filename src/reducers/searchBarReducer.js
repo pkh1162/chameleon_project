@@ -4,7 +4,9 @@ const defaultState = {
     searchResults : [],
     searchTerm : "",
     isLoading : false,
-    chunkedResults: []
+    chunkedResults: [],
+    city: "",
+    country: ""
 }
 
 

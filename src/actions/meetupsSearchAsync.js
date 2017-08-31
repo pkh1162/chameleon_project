@@ -7,7 +7,16 @@ export const CLEAR_MEETUPS_RESULTS = "CLEAR_MEETUPS_RESULTS";
 export const UPDATE_SEARCH_POSTCODE = "UPDATE_SEARCH_POSTCODE";
 export const CHANGE_MAP_COORDINATES = "CHANGE_MAP_COORDINATES";
 export const UPDATE_MARKERS = "UPDATE_MARKERS";
+export const UPDATE_SEARCH_WORDS = "UPDATE_SEARCH_WORDS";
 
+
+export const updateSearchWords = (city, country) => {
+    return {
+        type : UPDATE_SEARCH_WORDS,
+        city,
+        country
+    }
+}
 
 
 export const clearMeetupsResults = () => {
@@ -89,27 +98,36 @@ const extractMarker = (location) => {
 
 
 
-export const getMeetupsResults = (postcode) => {
+export const getMeetupsResults = (postcode, loading, city, country) => {
+    console.log("in getMeetupsResults: ", [...arguments])
     return (dispatch) => {
         dispatch(requestPostcode(postcode));
-        
-            //console.log("post code is: ", postcode);
+           let str = "";
+           let str1 = "";
 
-            let str1 = postcode.replace(/\s\s+/g, ' ');     //Replace multiple spaces with one space.      
-            let str = str1.replace(/ /g, '+').toUpperCase();              //The concierge api only seems to working when spaces are encoded as +, and not through normal encoding.
+            if(postcode){
+                str1 = postcode.replace(/\s\s+/g, ' ');     //Replace multiple spaces with one space.      
+                str = str1.replace(/ /g, '+').toUpperCase();              //The concierge api only seems to working when spaces are encoded as +, and not through normal encoding.
+            }
+
+            
             //console.log("post code is: ", str);
+            let uri = postcode ?
+            "https://api.meetup.com/2/concierge?zip=" + str + "&offset=0&radius=50&format=json&photo-host=public&page=500&key=" + MEETUPS_API_KEY
+            :
+            "https://api.meetup.com/2/concierge?country=" + country + "&city="+ city + "&offset=0&radius=50&format=json&photo-host=public&page=500&key=" + MEETUPS_API_KEY;
+            
 
-      
-            fetchJsonp("https://api.meetup.com/2/concierge?zip=" + str + "&offset=0&radius=50&format=json&photo-host=public&page=500&key=" + MEETUPS_API_KEY)
+            fetchJsonp(uri)           
             .then(res => {
-                //console.log("the res stuff is: ", res.json())
+                console.log("the res stuff is: ", res.json())
                 return res.json()
             
                 //throw new Error("Api request failed")
                 
             })
             .then(data => {
-                ////console.log("in fetch results: ", data.response.docs)
+                console.log("in fetch results: ", data)
                 let markerArray = [];
 
                 let modifiedData = 

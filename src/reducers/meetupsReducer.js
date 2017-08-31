@@ -1,9 +1,11 @@
-import {REQUEST_POSTCODE, RETRIEVED_MEETUPS, CLEAR_MEETUPS_RESULTS, UPDATE_MARKERS, UPDATE_SEARCH_POSTCODE, CHANGE_MAP_COORDINATES} from "../actions/meetupsSearchAsync.js";
+import {REQUEST_POSTCODE, RETRIEVED_MEETUPS, CLEAR_MEETUPS_RESULTS, UPDATE_MARKERS, UPDATE_SEARCH_POSTCODE, CHANGE_MAP_COORDINATES, UPDATE_SEARCH_WORDS} from "../actions/meetupsSearchAsync.js";
 
 const defaultState = {
     meetupsResults : [],
     chunkedResults : [],
     postcode : "",
+    city: "",
+    country: "",
     isLoading : false,
     markers: [],
     center: {lat:55.8642, lng:-4.2518}
@@ -57,6 +59,8 @@ const meetupsReducer = (state=defaultState, action) => {
             return {...state, meetupsResults : [], markers: [], chunkedResults: [], isLoading: false}
         case UPDATE_SEARCH_POSTCODE : 
             return {...state, postcode : action.searchPostcode}
+        case UPDATE_SEARCH_WORDS : 
+            return {...state, city : action.city, country: action.country}        
         case CHANGE_MAP_COORDINATES:
             return {...state, center: action.location}
         case UPDATE_MARKERS:

@@ -1,4 +1,4 @@
 export const NEWS_API_KEY = "bb40bd039d1c4a1cad1325910d1674f3";
 export const NYT_API_KEY = "3344a22b2028445b847c194852ebc5ae";
 export const GOOGLE_MAP_API_KEY = "AIzaSyDHhYldF_4cXLkOXTwKYRVr-9vRmD4Ovwg";
-export const MEETUPS_API_KEY = "4c417f231b71526032e374b4f6715a";
+export const MEETUPS_API_KEY = "39b5d3267e55485656326871432d8";

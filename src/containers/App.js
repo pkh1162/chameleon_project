@@ -6,10 +6,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 
-
-
-
-
 import '../styles/App.css';
 
 
