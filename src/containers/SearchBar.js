@@ -136,8 +136,13 @@ class SearchBar extends Component {
                 {this.props.searchType === "meetups" &&
                 <div>
                 
-                <Tabs style={{marginBottom:"20px"}}>
-                    <Tab value="a" label="Rest of World">
+                <Tabs style={{
+                            marginBottom:"20px",
+            　　　　　　　　}}>
+                    <Tab value="a" label="Rest of World"
+            　　　　　　　　style={{
+            　　　　　　　　　　backgroundColor: '#FFCA28'
+            　　　　　　　　}}>
                         <div>
                         <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
                             <ListItem 
@@ -182,7 +187,10 @@ class SearchBar extends Component {
                         </div>        
                     </Tab>
                     
-                    <Tab label="USA">
+                    <Tab label="USA"
+            　　　　　　　　style={{
+            　　　　　　　　　　backgroundColor: '#FFB74D'
+            　　　　　　　　}}>
                     <div>
                     <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
                             <ListItem 
@@ -209,7 +217,7 @@ class SearchBar extends Component {
                                 onChange={this.handleSearch} 
                                 floatingLabelText={searchPlaceholder}
                             />
-                            <FlatButton label="Search" type="submit" primary={true}/>
+                            <FlatButton label="Search" type="submit" label="Secondary" secondary={true}/>
                             <FlatButton onTouchTap={this.clearResults} label="Clear"/>
                         </form>
 
