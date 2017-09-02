@@ -217,7 +217,7 @@ class SearchBar extends Component {
                                 onChange={this.handleSearch} 
                                 floatingLabelText={searchPlaceholder}
                             />
-                            <FlatButton label="Search" type="submit" label="Secondary" secondary={true}/>
+                            <FlatButton label="Search" type="submit" label="Search" secondary={true}/>
                             <FlatButton onTouchTap={this.clearResults} label="Clear"/>
                         </form>
 
