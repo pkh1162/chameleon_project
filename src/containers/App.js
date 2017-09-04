@@ -34,9 +34,19 @@ class App extends Component {
               
 
 
-              <Tabs style={{marginBottom:"20px"}}>
-                <Tab label="Home" containerElement={<Link to="/"/>}/>
-                <Tab label="meetups" containerElement={<Link to="/meetups"/>}/>
+              <Tabs style={{
+                          margin: '0 auto',
+                          border: '1px solid #388E3C'
+                          }}>
+                <Tab label="Home" 
+                    containerElement={<Link to="/"/>}
+                    style={{
+                          backgroundColor: '#81C784'
+                          }}/>
+                <Tab label="meetups" containerElement={<Link to="/meetups"/>}
+                style={{
+                          backgroundColor: '#AED581'
+                          }}/>
               </Tabs>
 
               

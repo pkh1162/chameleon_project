@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { itemsFetchData, itemHasErrored } from '../actions/popularNewsItem.js';
-<<<<<<< HEAD
-
-
-=======
 import {Tabs, Tab} from 'material-ui/Tabs';
->>>>>>> aaayumi
 export const NEWS_API_KEY = "bb40bd039d1c4a1cad1325910d1674f3";
 
 
@@ -37,9 +32,20 @@ render() {
 
     return (
     <div>
-    <Tabs style={{marginBottom:"20px"}}>
-                <Tab id="trend" label="trend" onClick={this.handleBack.bind(this)} />
-                <Tab id="latest" label="latest" onClick={this.handleChange.bind(this)}/>
+    <Tabs style={{
+                marginBottom:"20px",
+                margin: '0 auto',
+                border: '1px solid #EF6C00'
+                }}>
+                <Tab id="trend" label="trend" onClick={this.handleBack.bind(this)} style={{
+                backgroundColor: '#FFCA28'
+                }}
+                />
+                <Tab id="latest" label="latest" onClick={this.handleChange.bind(this)}
+                style={{
+                backgroundColor: '#FFB74D'
+                }}
+                />
               </Tabs>
      <ul>
         {

@@ -50,7 +50,7 @@ class NewsItems extends React.Component {
         return (
             <div id="news-items">
                 <AppBar 
-                    style={{textAlign:"left", backgroundColor:"#FF4081", width: "97%", margin:"0 auto"}} 
+                    style={{textAlign:"left", backgroundColor:"#FF6F00", width: "97%", margin:"0 auto"}} 
                     title="News"
                     iconElementLeft={<div></div>}
                     iconElementRight={
