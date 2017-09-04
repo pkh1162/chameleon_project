@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { itemsFetchData, itemHasErrored } from '../actions/popularNewsItem.js';
-<<<<<<< HEAD
-
-
-=======
 import {Tabs, Tab} from 'material-ui/Tabs';
->>>>>>> aaayumi
 export const NEWS_API_KEY = "bb40bd039d1c4a1cad1325910d1674f3";
 
 
