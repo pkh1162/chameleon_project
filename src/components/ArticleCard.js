@@ -36,7 +36,7 @@ const ArticleCard = (props) => {
             <CardHeader
                 titleColor={props.muiTheme.palette.darkColor}
                 titleStyle={{fontSize:"0.8rem"}}
-                style={{padding:"10px",  backgroundColor:props.muiTheme.palette.primary1Color}}
+                style={{padding:"10px",  backgroundColor:'#FFECB3'}}
                 title={(sourcesInfo[props.source][1]).toUpperCase()}
                 
             />
