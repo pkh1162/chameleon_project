@@ -113,14 +113,14 @@ class SearchBar extends Component {
     render() {
        // console.log("in searchbar render: props: ", this.props)
         let searchPlaceholder = "Search"; 
-        let countryPlaceholder = "Country Code";
+        let countryPlaceholder = "Country";
         let cityPlaceholder = "City";
         let chunks = this.props.searchResults;
         
 
         if(this.props.searchType === "meetups"){
             searchPlaceholder = "Enter Zip Code";
-            countryPlaceholder = "Enter Country Code";
+            countryPlaceholder = "Enter Country";
             cityPlaceholder = "Enter City";
             chunks = this.props.chunks;
             if(this.props.chunks.length>0){
@@ -148,7 +148,7 @@ class SearchBar extends Component {
                             <ListItem 
                                 style={{cursor: "default", textAlign:"left"}}
                                 secondaryTextLines={2} 
-                                primaryText="Enter a two letter country code and city name to find coding meetups in your area."
+                                primaryText="Enter a country and city to find coding meetups in your area."
                                 secondaryText={    
                                     <p style={{width: "100%"}}>
                                         If the details you provide are not recognised, meetups in the default location of Glasgow/Edinburgh will be shown.
