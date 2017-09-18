@@ -30,7 +30,7 @@ class SearchBar extends Component {
 
 
     handleCountrySearch = (e) => {
-        console.log("the searches are: ", e.currentTarget)
+        //console.log("the searches are: ", e.currentTarget)
         let input = e.target.value.trim();
         if (!input){
             this.props.clearSearchResults();
@@ -84,7 +84,7 @@ class SearchBar extends Component {
 
         if (city && country){
             this.setState({errorText: ""})
-            console.log("form submit2, city: " + city + " : country: " + country);
+            //console.log("form submit2, city: " + city + " : country: " + country);
             this.props.fetchSearchResults(null, this.props.loading, city, country);
         }
         else {
@@ -344,7 +344,7 @@ class SearchBar extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-    console.log("in searchbar map state to props: ", state);
+    //console.log("in searchbar map state to props: ", state);
     if (ownProps.searchType === "newsSearch"){
         return {
             loading : state.searchBarReducer.isLoading,

@@ -106,7 +106,7 @@ const extractMarker = (location) => {
 
 
 export const getMeetupsResults = (postcode, loading, city, country) => {
-    console.log("in getMeetupsResults: ", countries);
+    //console.log("in getMeetupsResults: ", countries);
     return (dispatch) => {
         dispatch(requestPostcode(postcode));
            let str = "";
@@ -122,10 +122,9 @@ export const getMeetupsResults = (postcode, loading, city, country) => {
                 city = city.toLowerCase();
 
                 countryEntry = countries.find((x,i) => {
-                    return x.name === country;
+                    return (x.name === country || x.code === country.toUpperCase());
                 })
-                console.log("dlkndlkd: ", countryEntry);
-                console.log("coutnry ldkdkl: ", country);
+            
                 if(countryEntry){
                     country = countryEntry.code;
                 }
@@ -142,14 +141,14 @@ export const getMeetupsResults = (postcode, loading, city, country) => {
 
             fetchJsonp(uri)           
             .then(res => {
-                console.log("the res stuff is: ", res.json())
+                //console.log("the res stuff is: ", res.json())
                 return res.json()
             
                 //throw new Error("Api request failed")
                 
             })
             .then(data => {
-                console.log("in fetch results: ", data)
+                //console.log("in fetch results: ", data)
                 let markerArray = [];
 
                 let modifiedData = 
@@ -169,7 +168,7 @@ export const getMeetupsResults = (postcode, loading, city, country) => {
             .catch(e => {
                dispatch(clearMeetupsResults());
                dispatch(searchingError());
-                console.log("request fail", e.message)              
+                //console.log("request fail", e.message)              
             })
           
 

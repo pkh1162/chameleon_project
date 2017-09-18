@@ -45,7 +45,7 @@ const chunkIt = (results) => {
 const meetupsReducer = (state=defaultState, action) => {
     switch (action.type) {
         case SEARCHING_ERROR : 
-            console.log("error, searching error, in reducer");
+            //console.log("error, searching error, in reducer");
             let newArr = [[searchError]];
             return {...state, chunkedResults: newArr};
         case REQUEST_POSTCODE :
@@ -62,7 +62,7 @@ const meetupsReducer = (state=defaultState, action) => {
             } 
 
             let newArray = chunkIt(action.meetupsResults);
-            console.log("new array: ", newArray);
+            //console.log("new array: ", newArray);
 
             return {...state, meetupsResults : action.meetupsResults, chunkedResults: newArray, markers: action.markers, isLoading : false, center: firstEventCenter};
         case CLEAR_MEETUPS_RESULTS : 
