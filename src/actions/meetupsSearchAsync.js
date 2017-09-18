@@ -1,4 +1,5 @@
 import {MEETUPS_API_KEY} from "../apiKeys.js";
+import countries from "../countryCodes.js";
 
 const fetchJsonp = require("fetch-jsonp");
 export const REQUEST_POSTCODE = "REQUEST_POSTCODE";
@@ -8,7 +9,7 @@ export const UPDATE_SEARCH_POSTCODE = "UPDATE_SEARCH_POSTCODE";
 export const CHANGE_MAP_COORDINATES = "CHANGE_MAP_COORDINATES";
 export const UPDATE_MARKERS = "UPDATE_MARKERS";
 export const UPDATE_SEARCH_WORDS = "UPDATE_SEARCH_WORDS";
-
+export const SEARCHING_ERROR = "SEARCHING_ERROR";
 
 export const updateSearchWords = (city, country) => {
     return {
@@ -18,6 +19,12 @@ export const updateSearchWords = (city, country) => {
     }
 }
 
+export const searchingError = () => {
+    return {
+        type: SEARCHING_ERROR
+    }
+
+}
 
 export const clearMeetupsResults = () => {
     return {
@@ -99,15 +106,30 @@ const extractMarker = (location) => {
 
 
 export const getMeetupsResults = (postcode, loading, city, country) => {
-    console.log("in getMeetupsResults: ", [...arguments])
+    console.log("in getMeetupsResults: ", countries);
     return (dispatch) => {
         dispatch(requestPostcode(postcode));
            let str = "";
            let str1 = "";
+           let countryEntry = {};
 
             if(postcode){
                 str1 = postcode.replace(/\s\s+/g, ' ');     //Replace multiple spaces with one space.      
                 str = str1.replace(/ /g, '+').toUpperCase();              //The concierge api only seems to working when spaces are encoded as +, and not through normal encoding.
+            }
+            else {
+                country = country.toLowerCase();
+                city = city.toLowerCase();
+
+                countryEntry = countries.find((x,i) => {
+                    return x.name === country;
+                })
+                console.log("dlkndlkd: ", countryEntry);
+                console.log("coutnry ldkdkl: ", country);
+                if(countryEntry){
+                    country = countryEntry.code;
+                }
+            
             }
 
             
@@ -146,6 +168,7 @@ export const getMeetupsResults = (postcode, loading, city, country) => {
             })
             .catch(e => {
                dispatch(clearMeetupsResults());
+               dispatch(searchingError());
                 console.log("request fail", e.message)              
             })
           

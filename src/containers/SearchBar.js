@@ -146,12 +146,12 @@ class SearchBar extends Component {
                         <div>
                         <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
                             <ListItem 
-                                style={{textAlign:"left"}}
+                                style={{cursor: "default", textAlign:"left"}}
                                 secondaryTextLines={2} 
                                 primaryText="Enter a two letter country code and city name to find coding meetups in your area."
                                 secondaryText={    
                                     <p style={{width: "100%"}}>
-                                        If the details you provide are not recognised, meetups in the default location of Glasgow will be shown.
+                                        If the details you provide are not recognised, meetups in the default location of Glasgow/Edinburgh will be shown.
                                     </p>      
                                 }
                             >
@@ -194,12 +194,12 @@ class SearchBar extends Component {
                     <div>
                     <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
                             <ListItem 
-                                style={{textAlign:"left"}}
+                                style={{textAlign:"left", cursor: "default"}}
                                 secondaryTextLines={2} 
                                 primaryText="Enter your zip code code to find coding meetups in your area."
                                 secondaryText={    
                                     <p style={{width: "100%"}}>
-                                        If your zip code is not recognised, meetups in the default location of Glasgow will be shown.
+                                        If your zip code is not recognised, meetups in the default location of Glasgow/Edinburgh will be shown.
                                     </p>      
                                 }
                             >
@@ -213,7 +213,7 @@ class SearchBar extends Component {
                                 autoComplete="off" 
                                 style={{margin: "20px"}} 
                                 name="searchTerm" 
-                                value={this.props.searchTerm} 
+                                value={this.props.searchTerm || ""} 
                                 onChange={this.handleSearch} 
                                 floatingLabelText={searchPlaceholder}
                             />

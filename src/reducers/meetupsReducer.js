@@ -1,4 +1,4 @@
-import {REQUEST_POSTCODE, RETRIEVED_MEETUPS, CLEAR_MEETUPS_RESULTS, UPDATE_MARKERS, UPDATE_SEARCH_POSTCODE, CHANGE_MAP_COORDINATES, UPDATE_SEARCH_WORDS} from "../actions/meetupsSearchAsync.js";
+import {REQUEST_POSTCODE, RETRIEVED_MEETUPS, CLEAR_MEETUPS_RESULTS, UPDATE_MARKERS, UPDATE_SEARCH_POSTCODE, CHANGE_MAP_COORDINATES, UPDATE_SEARCH_WORDS, SEARCHING_ERROR} from "../actions/meetupsSearchAsync.js";
 
 const defaultState = {
     meetupsResults : [],
@@ -9,6 +9,13 @@ const defaultState = {
     isLoading : false,
     markers: [],
     center: {lat:55.8642, lng:-4.2518}
+}
+
+
+const searchError = {
+    description: "Please try again.",
+    name: "Search error",
+    time: 1505847600000
 }
 
 
@@ -37,6 +44,10 @@ const chunkIt = (results) => {
 
 const meetupsReducer = (state=defaultState, action) => {
     switch (action.type) {
+        case SEARCHING_ERROR : 
+            console.log("error, searching error, in reducer");
+            let newArr = [[searchError]];
+            return {...state, chunkedResults: newArr};
         case REQUEST_POSTCODE :
             //console.log("in request search") 
             return {...state, postcode : action.postcode, isLoading : true};
@@ -51,7 +62,7 @@ const meetupsReducer = (state=defaultState, action) => {
             } 
 
             let newArray = chunkIt(action.meetupsResults);
-            //console.log("new array: ", newArray);
+            console.log("new array: ", newArray);
 
             return {...state, meetupsResults : action.meetupsResults, chunkedResults: newArray, markers: action.markers, isLoading : false, center: firstEventCenter};
         case CLEAR_MEETUPS_RESULTS : 
