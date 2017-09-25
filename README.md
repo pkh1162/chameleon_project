@@ -16,14 +16,18 @@ In order to launch this app, you need  ```Node.js``` and ```npm```
 to be installed in your computer.
 
 1. Type the following command in your terminal.
+
 ``` git clone https://github.com/pkh1162/chameleon_project.git ```
 
 2. Change the directory.
+
 ``` cd chameleon_project```
 
 3. Install dependencies.
+
 ``` npm install ```
 
 4. Launch the application.
+
 ``` npm start ```
 
