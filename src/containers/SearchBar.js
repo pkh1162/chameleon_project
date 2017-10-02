@@ -6,6 +6,9 @@ import {connect} from "react-redux";
 import "../styles/searchBar.css"
 import  { Route, Link, Switch } from "react-router-dom";
 
+import moment from 'moment';
+
+
 
 
 import TextField from 'material-ui/TextField';
@@ -15,6 +18,9 @@ import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import {Tabs, Tab} from 'material-ui/Tabs';
+import AppBar from 'material-ui/AppBar';
+
+moment().format();
 
 class SearchBar extends Component {
 
@@ -23,6 +29,8 @@ class SearchBar extends Component {
         this.state = {
             chunkIndex : 0,
             errorText: "",
+            countryValue: "",
+            cityValue: ""
             
             
         }
@@ -51,7 +59,18 @@ class SearchBar extends Component {
 
     clearResults = (e) => {
         e.stopPropagation();
-       // console.log("the clear button is kndld: ", this.props.searchTerm)
+        console.log("the clear is: ", e.currentTarget.className);
+
+        if(e.currentTarget.className === "countryBtn"){
+            document.querySelector(".world-form").country.value = "";
+        }
+
+        if(e.currentTarget.className === "cityBtn"){
+            document.querySelector(".world-form").city.value = "";
+        }
+        
+        
+
         this.props.updateSearchTerm("")
         this.props.clearSearchResults();
     }
@@ -136,14 +155,13 @@ class SearchBar extends Component {
                 {this.props.searchType === "meetups" &&
                 <div>
                 
-                <Tabs style={{
-                            marginBottom:"20px",
-            　　　　　　　　}}>
+                <Tabs style={{marginBottom:"20px"}}>
                     <Tab value="a" label="Rest of World"
             　　　　　　　　style={{
             　　　　　　　　　　backgroundColor: '#FFCA28'
-            　　　　　　　　}}>
-                        <div>
+            　　　　　　　　}}
+                    >
+                    <div className="meetups-form-container">
                         <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
                             <ListItem 
                                 style={{cursor: "default", textAlign:"left"}}
@@ -160,28 +178,34 @@ class SearchBar extends Component {
                             <Divider />
                         </Paper>
 
-                        <form onSubmit={this.formSubmitted2} style={{display: "inline-flex", alignItems: "baseline"}}>
+                        <form className="world-form" onSubmit={this.formSubmitted2} style={{display: "inline-flex", alignItems: "stretch"}}>
                             <div>
-                            <TextField
-                                autoComplete="off" 
-                                style={{margin: "5px", position: "relative"}} 
-                                name="country" 
-                                floatingLabelText={countryPlaceholder}
-                                errorText={this.state.errorText}
-                                errorStyle={{position: 'absolute', top: '70px'}} 
-                            />
-                            <TextField
-                                autoComplete="off" 
-                                style={{margin: "5px", position: "relative"}} 
-                                name="city"                
-                                floatingLabelText={cityPlaceholder}
-                                errorText={this.state.errorText}
-                                errorStyle={{position: 'absolute', top: '70px'}} 
-                            />
+                                <div>
+                                    <TextField
+                                        autoComplete="off" 
+                                        style={{margin: "5px", position: "relative"}} 
+                                        name="country" 
+                                        floatingLabelText={countryPlaceholder}
+                                        errorText={this.state.errorText}
+                                        errorStyle={{position: 'absolute', top: '70px'}} 
+                                    />
+                                    <FlatButton className="countryBtn" onTouchTap={this.clearResults} icon={<i className="fa fa-close"></i>}/>
+                                </div>
+                                <div>
+                                    <TextField
+                                        autoComplete="off" 
+                                        style={{margin: "5px", position: "relative"}} 
+                                        name="city"               
+                                        floatingLabelText={cityPlaceholder}
+                                        errorText={this.state.errorText}
+                                        errorStyle={{position: 'absolute', top: '70px'}} 
+                                    />
+                                    <FlatButton className="cityBtn" onTouchTap={this.clearResults} icon={<i className="fa fa-close"></i>}/>
+                                </div>
                             </div>
-                            <div>
-                            <FlatButton label="Search" type="submit" primary={true}/>
-                            <FlatButton onTouchTap={this.clearResults} label="Clear"/>
+                            
+                            <div className="form-controls">
+                                <FlatButton icon={<i className="fa fa-search"></i>} type="submit" primary={true} style={{color:"white"}}/>
                             </div>
                         </form>
                         </div>        
@@ -191,7 +215,7 @@ class SearchBar extends Component {
             　　　　　　　　style={{
             　　　　　　　　　　backgroundColor: '#FFB74D'
             　　　　　　　　}}>
-                    <div>
+                    <div className="usa-form-container">
                     <Paper style={{margin:"7px",width: "95%", borderTop:"1px solid black"}} zDepth={1}>
                             <ListItem 
                                 style={{textAlign:"left", cursor: "default"}}
@@ -209,6 +233,7 @@ class SearchBar extends Component {
                         </Paper>
 
                         <form onSubmit={this.formSubmitted}>
+                            <div>
                             <TextField
                                 autoComplete="off" 
                                 style={{margin: "20px"}} 
@@ -217,8 +242,13 @@ class SearchBar extends Component {
                                 onChange={this.handleSearch} 
                                 floatingLabelText={searchPlaceholder}
                             />
-                            <FlatButton label="Search" type="submit" label="Search" secondary={true}/>
-                            <FlatButton onTouchTap={this.clearResults} label="Clear"/>
+                            <FlatButton style={{color: "black"}} onTouchTap={this.clearResults} icon={<i className="fa fa-close"></i>}/>
+                            </div>
+                            
+                            <div className="form-controls">
+                                
+                                <FlatButton style={{color: "white"}} icon={<i className="fa fa-search"></i>} type="submit" secondary={true}/>
+                            </div>
                         </form>
 
                         </div>
@@ -231,6 +261,16 @@ class SearchBar extends Component {
                 }
 
                 {this.props.searchType === "newsSearch" &&
+
+                <div className="news-search-container">
+
+                    <AppBar 
+                        style={{textAlign:"left", backgroundColor:"rgba(255, 0, 50, 0.89)", width: "97%", margin:"0 auto"}} 
+                        title="Search"
+                        iconElementLeft={<div></div>}         
+                    />
+
+
                     <form onSubmit={this.formSubmitted}>
                     <TextField
                         autoComplete="off" 
@@ -240,9 +280,15 @@ class SearchBar extends Component {
                         onChange={this.handleSearch} 
                         floatingLabelText={searchPlaceholder}
                     />
-                    <FlatButton label="Search" type="submit" primary={true}/>
-                    <FlatButton onTouchTap={this.clearResults} label="Clear"/>
+                    <div className="form-controls">
+                        <FlatButton icon={<i className="fa fa-search"></i>} type="submit" primary={true}/>
+                        <FlatButton onTouchTap={this.clearResults} icon={<i className="fa fa-close"></i>}/>
+                    </div>
                 </form>
+
+
+
+                </div>
                 }
 
 
@@ -271,7 +317,7 @@ class SearchBar extends Component {
                                         primaryText={article.name} 
                                         secondaryText={
                                                 <div>
-                                                <p className="time">{article.time}</p>    
+                                                <p className="time">{moment(article.time).format('DD/MM/YY')}</p>    
                                                 <p style={{width: "80%"}}>
                                                     {article.description}
                                                 </p>

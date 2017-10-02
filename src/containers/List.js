@@ -31,7 +31,7 @@ render() {
     var articles = this.props.items.articles;
 
     return (
-    <div>
+    <div style={{margin: "0 auto", width: "97%"}}>
     <Tabs style={{
                 marginBottom:"20px",
                 margin: '0 auto',

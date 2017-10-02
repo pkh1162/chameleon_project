@@ -2,7 +2,7 @@
     background: red;
     width: 100%;
     height: 100%;
-    
+    margin-top: 20px;
     display: flex;
     justify-content: space-around;
     flex-direction: 
@@ -17,4 +17,12 @@
 #meetups .mapper {
     flex: 2;
     background: white;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    #meetups {
+        flex-direction: column;
+    }
 }

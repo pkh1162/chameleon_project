@@ -9,6 +9,8 @@ import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import {GOOGLE_MAP_API_KEY as googleKey} from "../apiKeys.js";
 
+import "../styles/newsItems.css";
+
 import { fetchMultiNews, changeAmountOfArticlesShown } from "../actions/multiNewsAsync.js";
 
 

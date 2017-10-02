@@ -9,6 +9,43 @@
     text-align: left;
     text-align: -webkit-left;
     text-align: -moz-left;
+    display: flex;
+    width: 100%;
+}
+
+.usa-form-container form {
+    width: fit-content !important;
+}
+
+.form-controls {
+    display: flex;
+    align-items: center;
+}
+
+.news-search-container {
+
+}
+
+
+.meetups-form-container, .usa-form-container {
+    text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
+.world-form {
+    justify-content: center;
+    width:100%;
+    margin-top: 20px;
+}
+
+.meetups-form-container .form-controls {
+    background: rgba(255, 0, 50, 0.89);
+}
+
+.usa-form-container .form-controls {
+    margin-top: 20px;
+    background: rgba(255, 0, 50, 0.89);
 }
 
 #searchBar a {
@@ -61,6 +98,8 @@
     font-size: 18px;      
     color: rgb(255, 64, 129);
 }
+
+
 
 
 
