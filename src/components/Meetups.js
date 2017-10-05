@@ -1,21 +1,13 @@
 import React from "react";
-import {connect} from "react-redux";
 import "../styles/meetups.css";
-import SearchBar from "./SearchBar.js";
-import Map from "./Map.js";
-import {List, ListItem} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import Paper from 'material-ui/Paper';
+import SearchBar from "../containers/SearchBar.js";
+import Map from "../containers/Map.js";
 
-
-class Meetups extends React.Component {
-    render() {
+export const Meetups = (props) => {
         return (
             <div id="meetups">
-                <div className="searcher">
-                 
+                <div className="searcher">               
                     <SearchBar searchType="meetups"/>
-
                 </div>
                 <div className="mapper">
                     <Map 
@@ -27,7 +19,5 @@ class Meetups extends React.Component {
 
             </div>
         )
-    }
+    
 }
-
-export default connect(null, null)(Meetups)

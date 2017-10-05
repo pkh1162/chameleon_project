@@ -1,5 +1,5 @@
 import {REQUEST_MULTI_SOURCES, RETREIVED_ALL_SOURCES, CHANGE_NO_ARTICLES_SHOWN} from "../actions/multiNewsAsync.js";
-import {giveArticlesSource, concatArticles, sortingFuncs, latest, filterFirstX, chunkIt} from "../dataManipulationFuncs/multiSourceFuncs.js";
+import {giveArticlesSource, concatArticles, sortingFuncs, filterFirstX, chunkIt} from "../dataManipulationFuncs/multiSourceFuncs.js";
 
 
 const defaultState = {
@@ -10,14 +10,9 @@ const defaultState = {
     howManyArticlesAreThere : 0
 }
 
-//, "techcrunch", "hacker-news"
-
-
-
 const multiNewsReducer = (state=defaultState, action) => {
     switch (action.type) {
         case (REQUEST_MULTI_SOURCES) :
-            //console.log("in request reducer")
             return {...state, isLoading : true}
         case (RETREIVED_ALL_SOURCES) :     
             let numberOfArticles = sortingFuncs(concatArticles(giveArticlesSource(action.multiNewsData)));  //Finds how many articles there are 
@@ -25,7 +20,6 @@ const multiNewsReducer = (state=defaultState, action) => {
             let chunkedArray = chunkIt(sortedArr);  //Chunks artice array in smaller arrays of length 1 to 3
             return {...state, isLoading : false, multiSourceNews : [...chunkedArray], howManyArticlesAreThere : numberOfArticles.length}
         case (CHANGE_NO_ARTICLES_SHOWN) : 
-            //console.log("in articles show, in reducer: ", action.amount)
             return {...state, loadThisManyArticles : action.amount}
         default : 
             return state

@@ -10,11 +10,9 @@ import '../styles/App.css';
 
 
 /*///Paul's  imports/////*/ 
-import Meetups from "./Meetups.js";
+import {Meetups} from "../components/Meetups.js";
 import SearchBar from "./SearchBar.js";
-import GridIt from "../components/GridIt.js"
 import NewsItems from "../containers/NewsItems.js"
-import {fetchMultiNews} from "../actions/multiNewsAsync.js";
 /*///////////////////////*/
 
 /*///Ayumi's  imports/////*/ 
@@ -22,32 +20,25 @@ import NewsList from "./List.js";
 /*///////////////////////*/
 
 class App extends Component {
-
-  componentDidMount() {
-  }
-
   render() {
     return (
       <BrowserRouter>
         <MuiThemeProvider>
           <div className="App">
-              
-
-
-              <Tabs style={{
-                          margin: '0 auto',
-                          border: '1px solid #388E3C'
-                          }}>
-                <Tab label="Home" 
-                    containerElement={<Link to="/"/>}
-                    style={{
-                          backgroundColor: '#81C784'
-                          }}/>
-                <Tab label="meetups" containerElement={<Link to="/meetups"/>}
-                style={{
-                          backgroundColor: '#AED581'
-                          }}/>
-              </Tabs>
+            <Tabs style={{
+                        margin: '0 auto',
+                        border: '1px solid #388E3C'
+                        }}>
+              <Tab label="Home" 
+                  containerElement={<Link to="/"/>}
+                  style={{
+                        backgroundColor: '#81C784'
+                        }}/>
+              <Tab label="meetups" containerElement={<Link to="/meetups"/>}
+              style={{
+                        backgroundColor: '#AED581'
+                        }}/>
+            </Tabs>
 
               
               <Switch>
@@ -55,7 +46,6 @@ class App extends Component {
                   render={() => {
                     return (
                       <Meetups/>
-                    
                     )
                   }}
                 
@@ -91,24 +81,4 @@ class App extends Component {
 }
 
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-  }
-}
-
 export default connect(null, null)(App);
-
-
-
-/*
-<Map 
-                        containerElement={<div style={{width:"400px", height: "400px"}}/>}
-                        mapElement={<div style={{width:"400px", height: "400px"}}/>}
-                        zoom={15}
-                      />*/

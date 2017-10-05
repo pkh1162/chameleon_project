@@ -56,7 +56,6 @@ export const changeMapCoordinates = (location) => {
 }
 
 export const updateSearchPostcode = (searchPostcode) => {
-    //console.log("the search postcode is: ", searchPostcode)
     return {
         type : UPDATE_SEARCH_POSTCODE,
         searchPostcode
@@ -74,22 +73,12 @@ const removeHTML = (summary) => {
     let div = document.createElement("div");
     div.innerHTML = summary;
     let text = div.textContent || div.innerText || "";
-    //console.log("in removeHTML: ", text);
-    
     return text;
 }
 
 
-const options = {
-    method : "GET"
-}
-
-
-
 const extractMarker = (location) => {
     let {lon, lat, name} = location.venue;
-    ////console.log("location is : ", location.venue.lat)
-
     return {
         position: {
             lng: lon,
@@ -106,7 +95,6 @@ const extractMarker = (location) => {
 
 
 export const getMeetupsResults = (postcode, loading, city, country) => {
-    //console.log("in getMeetupsResults: ", countries);
     return (dispatch) => {
         dispatch(requestPostcode(postcode));
            let str = "";
@@ -132,7 +120,6 @@ export const getMeetupsResults = (postcode, loading, city, country) => {
             }
 
             
-            //console.log("post code is: ", str);
             let uri = postcode ?
             "https://api.meetup.com/2/concierge?zip=" + str + "&offset=0&radius=50&format=json&photo-host=public&page=500&key=" + MEETUPS_API_KEY
             :
@@ -141,16 +128,10 @@ export const getMeetupsResults = (postcode, loading, city, country) => {
 
             fetchJsonp(uri)           
             .then(res => {
-                //console.log("the res stuff is: ", res.json())
                 return res.json()
-            
-                //throw new Error("Api request failed")
-                
             })
             .then(data => {
-                //console.log("in fetch results: ", data)
                 let markerArray = [];
-
                 let modifiedData = 
                 data.results
                 .filter(y => y.venue)
@@ -160,15 +141,12 @@ export const getMeetupsResults = (postcode, loading, city, country) => {
 
                     return x
                 })
-                 //console.log("in meetups async then, and the data is: ", modifiedData);
-                 //console.log("in meetups async then, and the marker data is: ", markerArray);
-                
+
                 dispatch(retrievedMeetups(modifiedData, markerArray))
             })
             .catch(e => {
                dispatch(clearMeetupsResults());
                dispatch(searchingError());
-                //console.log("request fail", e.message)              
             })
           
 

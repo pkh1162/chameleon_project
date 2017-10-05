@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/articleCard.css";
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardHeader, CardMedia, CardTitle} from 'material-ui/Card';
 
 
 import tc from "../assets/images/techcrunch.png";

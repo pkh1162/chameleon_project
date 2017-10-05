@@ -37,6 +37,8 @@
     justify-content: center;
     width:100%;
     margin-top: 20px;
+    display: inline-flex; 
+    align-items: stretch;
 }
 
 .meetups-form-container .form-controls {

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import GridIt from "../components/GridIt.js";
@@ -7,7 +8,6 @@ import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
-import {GOOGLE_MAP_API_KEY as googleKey} from "../apiKeys.js";
 
 import "../styles/newsItems.css";
 
@@ -28,15 +28,12 @@ class NewsItems extends React.Component {
     
   
     toggleDrawer = () => {
-        //console.log("blah")
         this.setState({
             isDrawerOpen : this.state.isDrawerOpen ? false : true
         })
     }
 
     changeArticleNumber = (e) => {
-
-        //console.log("in change artile number, in function: ", e.target.value)
         let amount = e.target.value > 9 ? e.target.value : 10;        
         this.props.changeNumberOfArticlesShown(amount);
           this.props.fetchMultiSources(this.props.sources);
@@ -61,7 +58,7 @@ class NewsItems extends React.Component {
                 />
                 <GridIt articles={this.props.articles} loading={this.props.multiNewsLoading}/>
                 <Drawer onRequestChange={() => {this.setState({isDrawerOpen:false})}} docked={false} open={this.state.isDrawerOpen}>
-                    <MenuItem onTouchTap={this.toggleDrawer}>Articles Available:  {this.props.articlesAvailable}</MenuItem>
+                    <MenuItem  style={{background: "rebeccaPurple", color: "white"}} onTouchTap={this.toggleDrawer}>Articles Available:  {this.props.articlesAvailable}</MenuItem>
                     <MenuItem>
                         Show: <TextField onKeyDown={this.handleEnter} onChange={this.changeArticleNumber} style={{marginLeft:"10px"}} hintText="min: 10" />
                     </MenuItem>
@@ -72,6 +69,13 @@ class NewsItems extends React.Component {
     }
 }
 
+
+NewsItems.propTypes = {
+    articles: PropTypes.array,
+    sources: PropTypes.array,
+    multiNewsLoading: PropTypes.bool,
+    articlesAvailable: PropTypes.number
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {

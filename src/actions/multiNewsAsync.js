@@ -21,7 +21,6 @@ export const retreivedAllSources = (multiNewsData) => {
 }
 
 export const changeAmountOfArticlesShown = (amount) => {
-    //console.log("in change articles, in action: ", amount)
     return {
         type: CHANGE_NO_ARTICLES_SHOWN,
         amount
@@ -43,7 +42,6 @@ const fetchSources = (source) => {
             
             })
             .then(data => {
-                //console.log("in fetch sources, return data is: ", data)
                 return data
             })
     
@@ -63,7 +61,6 @@ export const fetchMultiNews = (newsSources) => {
 
         Promise.all(promises)
             .then((newsData) => {
-               // console.log("promises all resolved: ", newsData)
                 dispatch(retreivedAllSources(newsData));
             })
             .catch((err) => {
