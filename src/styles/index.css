@@ -29,3 +29,52 @@ a:hover {
     color:black;
     opacity: 0.3;
 }
+
+/** Mobile **/
+ 
+ @media only screen and (min-width: 300px) and (max-width: 768px) {
+
+    #wrapper {
+         display: flex;
+         flex-direction: column;
+     }
+     
+     .paulHalf {
+         width: 100%;
+     } 
+    
+    .aaayumiHalf {
+         width: 100%;
+     }
+     
+     /* news page */
+     #news-items div{
+         display: flex;
+         flex-direction: column;
+     }
+     
+     /*
+     
+     #meetups {
+       display: flex;
+       flex-direction: column;
+    }
+   
+    .searcher {
+         width: 100%;
+    }
+     
+    .searcher #searchBar form {
+        display: flex;
+      flex-direction: column;
+     }
+     
+    .mapper {
+        width: 100%;
+   }
+   */
+    /* Search bar */
+    #searchBar form {
+        width: 100% important!;
+    }
+}
