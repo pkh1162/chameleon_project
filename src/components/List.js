@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
@@ -17,26 +18,24 @@ render() {
     if(this.props.hasErrored) {
         return <p> Error occured. Please come back later </p>;
     } 
-    
-    //const arr = this.props.items.articles;
-    // console.log(arr);
-    var articles = this.props.items.articles;
+
+    let articles = this.props.items.articles;
 
     return (
          <Card>
-     <ul>
-        {
-            articles.map((item) => (
+         <ul>
+         {
+         articles.map((item) => (
           <li key={item.title}>
-          <a href={item.url}>
-          <CardMedia> 
-          <img src={item.urlToImage} />
-          </CardMedia>     
-          <CardTitle title={item.title} subtitle={item.author} />
-          <CardText>
-          {item.description}
-          </CardText>
-          </a>
+              <a href={item.url}>
+              <CardMedia> 
+              <img src={item.urlToImage} />
+              </CardMedia>     
+              <CardTitle title={item.title} subtitle={item.author} />
+              <CardText>
+              {item.description}
+              </CardText>
+              </a>
           </li> 
             ))
         }

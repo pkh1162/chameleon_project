@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { itemsFetchData, itemHasErrored } from '../actions/popularNewsItem.js';
 import {Tabs, Tab} from 'material-ui/Tabs';
