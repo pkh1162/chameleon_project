@@ -27,7 +27,7 @@ class NewsSearch extends React.Component {
                         [{
                             textName: "searchTerm",
                             textValue: this.props.searchTerm,
-                            textLabel: "Search",
+                            textLabel: "Article Search",
                             errorText: this.props.errorText,
                             errorStyle: {position: 'absolute', top: '70px'},
                             changeMethod: this.props.handleSearch,
@@ -40,19 +40,20 @@ class NewsSearch extends React.Component {
                     buttons = {
                         [
                             {
-                                iconClass: "fa fa-search",
-                                type: "submit",
-                                primary: true,
-                                style: null,
-                                clickMethod: () => {}
-                            },
-                            {
                                 iconClass: "fa fa-close",
                                 type: "button",
                                 primary: false,
                                 style: null,
                                 clickMethod: this.props.clearResults
+                            },
+                            {
+                                iconClass: "fa fa-search",
+                                type: "submit",
+                                primary: true,
+                                style: null,
+                                clickMethod: () => {}
                             }
+                          
                         ]
                     }                 
                 />

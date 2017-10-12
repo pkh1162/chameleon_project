@@ -19,7 +19,7 @@ class MeetupsSearch extends React.Component {
                             paperStyle={null}
                             displayCard={true}
                             primaryText="Enter a country and city to find coding meetups in your area."
-                            secondaryText="If the details you provide are not recognised, meetups in the default location of Glasgow/Edinburgh will be shown."
+                            secondaryText="If the details you provide are not recognised, a location based upon your public ip address will be shown."
                             formClass="world-form"
                             submit={this.props.worldFormSubmit}
                             style={null}
@@ -55,7 +55,7 @@ class MeetupsSearch extends React.Component {
                                         iconClass: "fa fa-search",
                                         type: "submit",
                                         primary: true,
-                                        style: {color: "white"},
+                                        style: null,
                                         clickMethod: () => {}
                                     }
                                 ]
@@ -70,7 +70,7 @@ class MeetupsSearch extends React.Component {
                             paperStyle={null}
                             displayCard={true}
                             primaryText="Enter your zip code code to find coding meetups in your area."
-                            secondaryText="If your zip code is not recognised, meetups in the default location of Glasgow/Edinburgh will be shown."
+                            secondaryText=""
 
                             formClass=""
                             submit={this.props.formSubmitted}
@@ -97,7 +97,7 @@ class MeetupsSearch extends React.Component {
                                         iconClass: "fa fa-search",
                                         type: "submit",
                                         primary: false,
-                                        style: {color: "white"},
+                                        style: {color: "rgb(0, 188, 212)"},
                                         clickMethod: () => {} 
                                     }
                                 ]

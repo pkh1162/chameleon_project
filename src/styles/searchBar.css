@@ -20,7 +20,9 @@
 .form-controls {
     display: flex;
     align-items: center;
+    margin-top: 30px;
 }
+
 
 .news-search-container {
 
@@ -42,12 +44,13 @@
 }
 
 .meetups-form-container .form-controls {
-    background: rgba(255, 0, 50, 0.89);
+    /*background: rgba(255, 0, 50, 0.89);*/
+    background: white;
 }
 
-.usa-form-container .form-controls {
+.usa-form-container .form-controls button {
     margin-top: 20px;
-    background: rgba(255, 0, 50, 0.89);
+
 }
 
 #searchBar a {
